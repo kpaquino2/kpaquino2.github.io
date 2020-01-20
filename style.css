@@ -1,0 +1,25 @@
+body {
+	background-color: #272822;
+}
+
+h1 {
+	color: #F92672;
+	text-align: center;
+	font-family: "Courier New", Courier, monospace;
+}
+
+h2 {
+	color: #A6E22E;
+	text-align: center;
+	font-family: "Courier New", Courier, monospace;
+}
+
+h3 {
+	color: #FD971F;
+	font-family: "Courier New", Courier, monospace;
+}
+
+h4 {
+	color: #F8F8F0;
+	font-family: "Courier New", Courier, monospace;
+}
