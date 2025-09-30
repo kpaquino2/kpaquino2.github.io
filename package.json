@@ -11,6 +11,7 @@
     "deploy": "pnpm build && pnpx gh-pages -d dist"
   },
   "dependencies": {
+    "@phosphor-icons/react": "^2.1.10",
     "@tailwindcss/vite": "^4.1.13",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

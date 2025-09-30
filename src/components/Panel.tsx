@@ -2,7 +2,7 @@ import DateTime from "./DateTime";
 
 const Panel = () => {
   return (
-    <div className="flex items-center justify-between m-2 px-2 text-black dark:text-white h-8 border-black dark:border-white border-1 rounded-lg">
+    <div className="flex items-center justify-between px-2 h-8  border-1 rounded-lg">
       <DateTime />
     </div>
   );
