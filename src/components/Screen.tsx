@@ -26,7 +26,7 @@ const Screen = () => {
   ];
 
   return (
-    <div className="h-screen w-screen bg-white dark:bg-black text-black dark:text-white">
+    <div className="h-screen w-screen">
       <div className="h-full flex flex-col gap-2 p-4">
         <Panel />
         <div className="flex-1 grid auto-cols-[4.5rem] auto-rows-min gap-2 ">

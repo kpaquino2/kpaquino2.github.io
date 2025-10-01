@@ -1,10 +1,38 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>kpaquino2.github.io</title>
+    <script>
+      (function () {
+        try {
+          const key = "theme-preference"; // same key used in app
+          const stored = localStorage.getItem(key); // "light" | "dark" | "system" | null
+          const prefersDark = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+          ).matches;
+
+          const applyDark = (value) => {
+            if (value) document.documentElement.classList.add("dark");
+            else document.documentElement.classList.remove("dark");
+          };
+
+          if (stored === "dark") {
+            applyDark(true);
+          } else if (stored === "light") {
+            applyDark(false);
+          } else {
+            // stored === 'system' or null -> follow system
+            applyDark(prefersDark);
+          }
+        } catch (e) {
+          // silent fail — keep default
+          console.error(e);
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
