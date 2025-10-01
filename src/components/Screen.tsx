@@ -1,3 +1,4 @@
+import DesktopItem from "./DesktopItem";
 import Panel from "./Panel";
 import { FileTextIcon, TerminalWindowIcon } from "@phosphor-icons/react";
 
@@ -31,13 +32,7 @@ const Screen = () => {
         <Panel />
         <div className="flex-1 grid auto-cols-[4.5rem] auto-rows-min gap-2 ">
           {desktopItems.map((item) => (
-            <div
-              key={item.label}
-              className="flex w-18 flex-col items-center p-1"
-            >
-              {item.icon}
-              <p className="text-xs text-center">{item.label}</p>
-            </div>
+            <DesktopItem key={item.label} {...item} />
           ))}
         </div>
       </div>
