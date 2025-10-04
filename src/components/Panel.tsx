@@ -1,4 +1,4 @@
-import { useTheme } from "../hooks/useTheme";
+import { useTheme } from "../lib/hooks/useTheme";
 import DateTime from "./DateTime";
 
 const Panel = () => {
