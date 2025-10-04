@@ -1,13 +1,13 @@
 import { useTheme } from "../../lib/hooks/useTheme";
 import DateTime from "./DateTime";
-import OpenWindows from "./OpenWindows";
+import OpenApps from "./OpenApps";
 
 const Panel = () => {
   const { theme, setTheme } = useTheme();
   const themes = ["Dark", "Light", "System"];
   return (
-    <div className="flex items-center justify-between px-2 h-8  border-1 rounded-lg">
-      <OpenWindows />
+    <div className="flex items-center justify-between h-8  border-1">
+      <OpenApps />
       <DateTime />
       <div className="flex gap-2">
         {themes.map((t) => (
