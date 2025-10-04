@@ -2,8 +2,12 @@ import DesktopItem from "./DesktopItem";
 import Panel from "./Panel";
 import { FileTextIcon, TerminalWindowIcon } from "@phosphor-icons/react";
 import Terminal from "./windows/Terminal";
+import { useRef } from "react";
+import { motion } from "motion/react";
 
 const Screen = () => {
+  const constraintsRef = useRef<HTMLDivElement>(null);
+
   const desktopItems = [
     {
       icon: (
@@ -31,12 +35,15 @@ const Screen = () => {
     <div className="h-screen w-screen">
       <div className="h-full flex flex-col gap-2 p-4">
         <Panel />
-        <div className="relative flex-1 grid auto-cols-[4.5rem] auto-rows-min gap-2 ">
+        <motion.div
+          ref={constraintsRef}
+          className="relative flex-1 grid auto-cols-[4.5rem] auto-rows-min gap-2 "
+        >
           {desktopItems.map((item) => (
             <DesktopItem key={item.label} {...item} />
           ))}
-          <Terminal />
-        </div>
+          <Terminal constraintsRef={constraintsRef} />
+        </motion.div>
       </div>
     </div>
   );

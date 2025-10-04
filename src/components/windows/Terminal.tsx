@@ -1,8 +1,13 @@
+import type { RefObject } from "react";
 import Window from "./Window";
 
-const Terminal = () => {
+interface TerminalProps {
+  constraintsRef: RefObject<HTMLDivElement | null>;
+}
+
+const Terminal = ({ constraintsRef }: TerminalProps) => {
   return (
-    <Window title="Terminal">
+    <Window title="Terminal" constraintsRef={constraintsRef}>
       <div>TEST</div>
     </Window>
   );
