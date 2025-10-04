@@ -1,27 +1,9 @@
 // src/store/desktop.ts
 import { create } from "zustand";
-import { WindowStatus, type WindowStatusType } from "../types";
-import {
-  FileTextIcon,
-  TerminalWindowIcon,
-  type Icon,
-} from "@phosphor-icons/react";
+import { WindowStatus, type AppEntry, type WindowStatusType } from "../types";
+import { FileTextIcon, TerminalWindowIcon } from "@phosphor-icons/react";
 import Terminal from "../../components/windows/Terminal";
 import Resume from "../../components/windows/Resume";
-import type { ReactNode, RefObject } from "react";
-
-export type AppEntry = {
-  id: string;
-  status: WindowStatusType;
-  zIndex: number;
-  label: string;
-  Icon: Icon;
-  Window: ({
-    constraintsRef,
-  }: {
-    constraintsRef: RefObject<HTMLDivElement | null>;
-  }) => ReactNode;
-};
 
 type DesktopStore = {
   apps: AppEntry[];
@@ -40,7 +22,7 @@ export const useDesktop = create<DesktopStore>((set) => ({
       zIndex: 10,
       label: "Portfolio Terminal",
       Icon: TerminalWindowIcon,
-      Window: Terminal,
+      Content: Terminal,
     },
     {
       id: "resume",
@@ -48,7 +30,7 @@ export const useDesktop = create<DesktopStore>((set) => ({
       zIndex: 10,
       label: "KyleAquino Resume.pdf",
       Icon: FileTextIcon,
-      Window: Resume,
+      Content: Resume,
     },
   ],
 

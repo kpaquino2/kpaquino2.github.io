@@ -1,16 +1,19 @@
-import type { ReactNode, RefObject } from "react";
+import type { RefObject } from "react";
 import TitleBar from "./TitleBar";
 import { motion, useDragControls } from "motion/react";
 import { useDesktop } from "../../lib/hooks/useDesktop";
+import type { AppEntry } from "../../lib/types";
 
 interface WindowProps {
-  id: string;
-  title: string;
-  children: ReactNode;
   constraintsRef: RefObject<HTMLDivElement | null>;
 }
 
-const Window = ({ id, title, children, constraintsRef }: WindowProps) => {
+const Window = ({
+  id,
+  label,
+  Content,
+  constraintsRef,
+}: WindowProps & AppEntry) => {
   const controls = useDragControls();
   const { setAppStatus } = useDesktop();
   return (
@@ -23,11 +26,11 @@ const Window = ({ id, title, children, constraintsRef }: WindowProps) => {
       className="flex flex-col absolute max-w-full max-h-full bg-white dark:bg-black border-1 w-200 h-160"
     >
       <TitleBar
-        title={title}
+        title={label}
         controls={controls}
         setStatus={(status) => setAppStatus(id, status)}
       />
-      {children}
+      <Content />
     </motion.div>
   );
 };

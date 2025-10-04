@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion } from "motion/react";
 import { WindowStatus } from "../lib/types";
 import { useDesktop } from "../lib/hooks/useDesktop";
+import Window from "./windows/Window";
 
 const Screen = () => {
   const constraintsRef = useRef<HTMLDivElement>(null);
@@ -23,7 +24,7 @@ const Screen = () => {
           {apps
             .filter((app) => app.status !== WindowStatus.CLOSED)
             .map((app) => (
-              <app.Window constraintsRef={constraintsRef} />
+              <Window constraintsRef={constraintsRef} {...app} />
             ))}
         </motion.div>
         {}
