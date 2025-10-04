@@ -1,7 +1,7 @@
 import type { ReactNode, RefObject } from "react";
 import TitleBar from "./TitleBar";
 import { motion, useDragControls } from "motion/react";
-import { useWindows } from "../../lib/hooks/useWindows";
+import { useDesktop } from "../../lib/hooks/useDesktop";
 
 interface WindowProps {
   id: string;
@@ -12,7 +12,7 @@ interface WindowProps {
 
 const Window = ({ id, title, children, constraintsRef }: WindowProps) => {
   const controls = useDragControls();
-  const { setWindowState } = useWindows();
+  const { setAppStatus } = useDesktop();
   return (
     <motion.div
       drag
@@ -25,7 +25,7 @@ const Window = ({ id, title, children, constraintsRef }: WindowProps) => {
       <TitleBar
         title={title}
         controls={controls}
-        setStatus={(status) => setWindowState(id, status)}
+        setStatus={(status) => setAppStatus(id, status)}
       />
       {children}
     </motion.div>
