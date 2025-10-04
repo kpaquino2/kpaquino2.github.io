@@ -42,7 +42,9 @@ export const useDesktop = create<DesktopStore>((set) => ({
   openApp: (id) =>
     set((s) => ({
       apps: s.apps.map((a) =>
-        a.id !== id ? a : { ...a, status: WindowStatus.OPEN }
+        a.id !== id
+          ? { ...a, zIndex: 10 }
+          : { ...a, status: WindowStatus.OPEN, zIndex: 20 }
       ),
     })),
 
@@ -61,10 +63,7 @@ export const useDesktop = create<DesktopStore>((set) => ({
     })),
 
   focusApp: (id) =>
-    set((s) => {
-      const maxZ = Math.max(0, ...s.apps.map((a) => a.zIndex || 0));
-      return {
-        apps: s.apps.map((a) => (a.id === id ? { ...a, zIndex: maxZ + 1 } : a)),
-      };
-    }),
+    set((s) => ({
+      apps: s.apps.map((a) => ({ ...a, zIndex: a.id === id ? 20 : 10 })),
+    })),
 }));

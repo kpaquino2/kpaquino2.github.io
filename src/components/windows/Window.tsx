@@ -11,11 +11,12 @@ interface WindowProps {
 const Window = ({
   id,
   label,
+  zIndex,
   Content,
   constraintsRef,
 }: WindowProps & AppEntry) => {
   const controls = useDragControls();
-  const { setAppStatus } = useDesktop();
+  const { setAppStatus, focusApp } = useDesktop();
   return (
     <motion.div
       drag
@@ -24,6 +25,8 @@ const Window = ({
       dragConstraints={constraintsRef}
       dragElastic={0}
       className="flex flex-col absolute max-w-full max-h-full bg-white dark:bg-black border-1 w-200 h-160"
+      onMouseDown={() => focusApp(id)}
+      style={{ zIndex }}
     >
       <TitleBar
         title={label}
