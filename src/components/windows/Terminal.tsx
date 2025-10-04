@@ -1,19 +1,13 @@
 import type { RefObject } from "react";
 import Window from "./Window";
-import type { WindowStatusType } from "../../lib/types";
 
 interface TerminalProps {
   constraintsRef: RefObject<HTMLDivElement | null>;
-  setStatus: (status: WindowStatusType) => void;
 }
 
-const Terminal = ({ constraintsRef, setStatus }: TerminalProps) => {
+const Terminal = ({ constraintsRef }: TerminalProps) => {
   return (
-    <Window
-      title="Terminal"
-      constraintsRef={constraintsRef}
-      setStatus={setStatus}
-    >
+    <Window title="Terminal" id="terminal" constraintsRef={constraintsRef}>
       <div>TEST</div>
     </Window>
   );
