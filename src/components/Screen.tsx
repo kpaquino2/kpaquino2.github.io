@@ -24,7 +24,7 @@ const Screen = () => {
           {apps
             .filter((app) => app.status !== WindowStatus.CLOSED)
             .map((app) => (
-              <Window constraintsRef={constraintsRef} {...app} />
+              <Window key={app.id} constraintsRef={constraintsRef} {...app} />
             ))}
         </motion.div>
         {}
