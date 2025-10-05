@@ -14,6 +14,7 @@ export type AppEntry = {
   status: WindowStatusType;
   zIndex: number;
   label: string;
+  order: number;
   Icon: Icon;
   Content: () => ReactNode;
 };

@@ -21,6 +21,7 @@ export const useDesktop = create<DesktopStore>((set) => ({
       status: WindowStatus.CLOSED,
       zIndex: 10,
       label: "Portfolio Terminal",
+      order: 0,
       Icon: TerminalWindowIcon,
       Content: Terminal,
     },
@@ -29,6 +30,7 @@ export const useDesktop = create<DesktopStore>((set) => ({
       status: WindowStatus.CLOSED,
       zIndex: 10,
       label: "KyleAquino Resume.pdf",
+      order: 0,
       Icon: FileTextIcon,
       Content: Resume,
     },
@@ -40,18 +42,21 @@ export const useDesktop = create<DesktopStore>((set) => ({
     })),
 
   openApp: (id) =>
-    set((s) => ({
-      apps: s.apps.map((a) =>
-        a.id !== id
-          ? { ...a, zIndex: 10 }
-          : { ...a, status: WindowStatus.OPEN, zIndex: 20 }
-      ),
-    })),
+    set((s) => {
+      const maxOder = Math.max(...s.apps.map((a) => a.order)) + 1;
+      return {
+        apps: s.apps.map((a) =>
+          a.id !== id
+            ? { ...a, zIndex: 10 }
+            : { ...a, status: WindowStatus.OPEN, zIndex: 20, order: maxOder }
+        ),
+      };
+    }),
 
   closeApp: (id) =>
     set((s) => ({
       apps: s.apps.map((a) =>
-        a.id !== id ? a : { ...a, status: WindowStatus.CLOSED }
+        a.id !== id ? a : { ...a, status: WindowStatus.CLOSED, order: 0 }
       ),
     })),
 

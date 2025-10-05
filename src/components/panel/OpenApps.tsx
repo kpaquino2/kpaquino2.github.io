@@ -7,6 +7,7 @@ const OpenApps = () => {
     <div className="flex h-full">
       {apps
         .filter((app) => app.status !== WindowStatus.CLOSED)
+        .sort((a, b) => a.order - b.order)
         .map((app) => (
           <button
             onClick={() =>
@@ -14,10 +15,14 @@ const OpenApps = () => {
                 ? openApp(app.id)
                 : minimizeApp(app.id)
             }
-            className="border-r w-8 grid place-items-center"
+            className={
+              "border-r items-center justify-center flex gap-2 px-2 " +
+              (app.zIndex === 10 ? "opacity-50" : "")
+            }
             key={app.id}
           >
-            <app.Icon className={app.zIndex === 10 ? "opacity-50" : ""} />
+            <app.Icon />
+            <p className="hidden lg:flex">{app.label}</p>
           </button>
         ))}
     </div>
