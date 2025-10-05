@@ -1,8 +1,9 @@
 import { useDesktop } from "../../lib/hooks/useDesktop";
 import { WindowStatus } from "../../lib/types";
+import { XIcon } from "@phosphor-icons/react";
 
 const OpenApps = () => {
-  const { apps, focusApp, minimizeApp } = useDesktop();
+  const { apps, focusApp, minimizeApp, closeApp } = useDesktop();
   return (
     <div className="flex h-full">
       {apps
@@ -16,7 +17,7 @@ const OpenApps = () => {
                 : minimizeApp(app.id)
             }
             className={
-              "border-r items-center justify-center flex gap-2 px-2 " +
+              "border-r items-center group relative justify-center flex gap-2 px-2 " +
               (app.status === WindowStatus.MINI || app.zIndex === 10
                 ? "opacity-50"
                 : "")
@@ -25,6 +26,15 @@ const OpenApps = () => {
           >
             <app.Icon />
             <p className="hidden lg:flex">{app.label}</p>
+            <div
+              className="bg-white dark:bg-black group-hover:opacity-100 hidden lg:grid opacity-0 place-items-center cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                closeApp(app.id);
+              }}
+            >
+              <XIcon />
+            </div>
           </button>
         ))}
     </div>
