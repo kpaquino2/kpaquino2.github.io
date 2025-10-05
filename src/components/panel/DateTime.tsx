@@ -12,7 +12,7 @@ const DateTime = () => {
   }, []);
 
   return (
-    <p className="h-full flex items-center">
+    <p className="flex h-full items-center">
       {currentTime.toLocaleDateString()}{" "}
       {currentTime.toLocaleTimeString(undefined, {
         hourCycle: "h24",

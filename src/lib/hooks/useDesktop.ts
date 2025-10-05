@@ -49,7 +49,7 @@ export const useDesktop = create<DesktopStore>((set) => ({
         apps: s.apps.map((a) =>
           a.id !== id
             ? { ...a, zIndex: 10 }
-            : { ...a, status: WindowStatus.OPEN, zIndex: 20, order: maxOder }
+            : { ...a, status: WindowStatus.OPEN, zIndex: 20, order: maxOder },
         ),
       };
     }),
@@ -60,7 +60,7 @@ export const useDesktop = create<DesktopStore>((set) => ({
         apps: s.apps.map((a) =>
           a.id !== id
             ? { ...a, order: 1 }
-            : { ...a, status: WindowStatus.CLOSED, order: 0 }
+            : { ...a, status: WindowStatus.CLOSED, order: 0 },
         ),
       };
     }),
@@ -68,7 +68,7 @@ export const useDesktop = create<DesktopStore>((set) => ({
   minimizeApp: (id) =>
     set((s) => ({
       apps: s.apps.map((a) =>
-        a.id !== id ? a : { ...a, status: WindowStatus.MINI, zIndex: 20 }
+        a.id !== id ? a : { ...a, status: WindowStatus.MINI, zIndex: 20 },
       ),
     })),
 
@@ -77,7 +77,7 @@ export const useDesktop = create<DesktopStore>((set) => ({
       apps: s.apps.map((a) =>
         a.id !== id
           ? { ...a, zIndex: 10 }
-          : { ...a, status: WindowStatus.OPEN, zIndex: 20 }
+          : { ...a, status: WindowStatus.OPEN, zIndex: 20 },
       ),
     })),
 }));

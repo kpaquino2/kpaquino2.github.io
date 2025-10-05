@@ -4,9 +4,9 @@ import Settings from "./Settings";
 
 const Panel = () => {
   return (
-    <div className="flex items-center justify-between h-8  border-1">
+    <div className="flex h-8 items-center justify-between border-1">
       <OpenApps />
-      <div className="flex mr-2 gap-2 h-full">
+      <div className="mr-2 flex h-full gap-2">
         <Settings />
         <DateTime />
       </div>

@@ -10,7 +10,7 @@ const Settings = () => {
   return (
     <>
       <button
-        className="h-full grid place-items-center cursor-pointer"
+        className="grid h-full cursor-pointer place-items-center"
         onClick={() => setIsOpen(!isOpen)}
       >
         <GearIcon />
@@ -21,7 +21,7 @@ const Settings = () => {
             initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
-            className="z-50 flex flex-col absolute top-14 border px-2 py-1"
+            className="absolute top-14 z-50 flex flex-col border px-2 py-1"
           >
             <div>Theme</div>
             <div className="flex gap-2">

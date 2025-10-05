@@ -71,7 +71,7 @@ export function useTheme() {
       setTheme(value);
       applyTheme(value);
     },
-    [applyTheme]
+    [applyTheme],
   );
 
   return {

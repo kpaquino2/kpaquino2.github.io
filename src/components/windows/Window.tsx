@@ -63,7 +63,7 @@ const Window = ({
       onDragEnd={() => {
         prevpos.current = { x: x.get(), y: y.get() };
       }}
-      className="flex flex-col absolute max-w-full max-h-full bg-white dark:bg-black border-1 w-200 h-160"
+      className="absolute flex h-160 max-h-full w-200 max-w-full flex-col border-1 bg-white dark:bg-black"
       onMouseDown={() => focusApp(id)}
       style={{
         zIndex,

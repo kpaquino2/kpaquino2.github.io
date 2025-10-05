@@ -12,11 +12,11 @@ const Screen = () => {
 
   return (
     <div className="h-screen w-screen">
-      <div className="h-full flex flex-col gap-2 p-4">
+      <div className="flex h-full flex-col gap-2 p-4">
         <Panel />
         <motion.div
           ref={constraintsRef}
-          className="relative flex-1 grid auto-cols-[4.5rem] auto-rows-min gap-2 "
+          className="relative grid flex-1 auto-cols-[4.5rem] auto-rows-min gap-2"
         >
           {apps.map((item) => (
             <DesktopItem key={item.label} {...item} />

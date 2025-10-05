@@ -15,20 +15,20 @@ const TitleBar = ({
   const { closeApp, minimizeApp } = useDesktop();
   return (
     <div
-      className="border-b h-8 flex items-center justify-between pl-2"
+      className="flex h-8 items-center justify-between border-b pl-2"
       onPointerDown={(event) => controls.start(event)}
     >
       <p className={zIndex === 10 ? "opacity-50" : ""}>{label}</p>
-      <div className="flex h-full ">
+      <div className="flex h-full">
         <button
           onClick={() => minimizeApp(id!)}
-          className="border-l w-8 grid place-items-center"
+          className="grid w-8 place-items-center border-l"
         >
           <MinusIcon />
         </button>
         <button
           onClick={() => closeApp(id!)}
-          className="border-l w-8 grid place-items-center"
+          className="grid w-8 place-items-center border-l"
         >
           <XIcon />
         </button>
