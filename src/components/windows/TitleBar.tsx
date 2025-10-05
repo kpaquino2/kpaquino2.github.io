@@ -1,14 +1,15 @@
 import { MinusIcon, SquareIcon, XIcon } from "@phosphor-icons/react";
 import type { DragControls } from "motion/react";
-import { WindowStatus, type WindowStatusType } from "../../lib/types";
+import { useDesktop } from "../../lib/hooks/useDesktop";
 
 interface TitleBarProps {
+  id: string;
   title: string;
   controls: DragControls;
-  setStatus: (status: WindowStatusType) => void;
 }
 
-const TitleBar = ({ title, controls, setStatus }: TitleBarProps) => {
+const TitleBar = ({ id, title, controls }: TitleBarProps) => {
+  const { closeApp, minimizeApp } = useDesktop();
   return (
     <div
       className="border-b h-8 flex items-center justify-between pl-2"
@@ -17,7 +18,7 @@ const TitleBar = ({ title, controls, setStatus }: TitleBarProps) => {
       {title}
       <div className="flex h-full ">
         <button
-          onClick={() => setStatus(WindowStatus.MINI)}
+          onClick={() => minimizeApp(id)}
           className="border-l w-8 grid place-items-center"
         >
           <MinusIcon />
@@ -26,7 +27,7 @@ const TitleBar = ({ title, controls, setStatus }: TitleBarProps) => {
           <SquareIcon />
         </button>
         <button
-          onClick={() => setStatus(WindowStatus.CLOSED)}
+          onClick={() => closeApp(id)}
           className="border-l w-8 grid place-items-center"
         >
           <XIcon />

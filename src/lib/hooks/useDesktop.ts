@@ -58,7 +58,7 @@ export const useDesktop = create<DesktopStore>((set) => ({
   minimizeApp: (id) =>
     set((s) => ({
       apps: s.apps.map((a) =>
-        a.id !== id ? a : { ...a, status: WindowStatus.MINI }
+        a.id !== id ? a : { ...a, status: WindowStatus.MINI, zIndex: 10 }
       ),
     })),
 

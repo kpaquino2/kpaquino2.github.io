@@ -2,14 +2,18 @@ import { useDesktop } from "../../lib/hooks/useDesktop";
 import { WindowStatus } from "../../lib/types";
 
 const OpenApps = () => {
-  const { apps, focusApp } = useDesktop();
+  const { apps, openApp, minimizeApp } = useDesktop();
   return (
     <div className="flex h-full">
       {apps
         .filter((app) => app.status !== WindowStatus.CLOSED)
         .map((app) => (
           <button
-            onClick={() => focusApp(app.id)}
+            onClick={() =>
+              app.status === WindowStatus.MINI
+                ? openApp(app.id)
+                : minimizeApp(app.id)
+            }
             className="border-r w-8 grid place-items-center"
             key={app.id}
           >
