@@ -43,7 +43,8 @@ export const useDesktop = create<DesktopStore>((set) => ({
 
   openApp: (id) =>
     set((s) => {
-      const maxOder = Math.max(...s.apps.map((a) => a.order)) + 1;
+      const maxOder =
+        s.apps.filter((a) => a.status !== WindowStatus.CLOSED).length + 1;
       return {
         apps: s.apps.map((a) =>
           a.id !== id
@@ -54,21 +55,29 @@ export const useDesktop = create<DesktopStore>((set) => ({
     }),
 
   closeApp: (id) =>
-    set((s) => ({
-      apps: s.apps.map((a) =>
-        a.id !== id ? a : { ...a, status: WindowStatus.CLOSED, order: 0 }
-      ),
-    })),
+    set((s) => {
+      return {
+        apps: s.apps.map((a) =>
+          a.id !== id
+            ? { ...a, order: 1 }
+            : { ...a, status: WindowStatus.CLOSED, order: 0 }
+        ),
+      };
+    }),
 
   minimizeApp: (id) =>
     set((s) => ({
       apps: s.apps.map((a) =>
-        a.id !== id ? a : { ...a, status: WindowStatus.MINI, zIndex: 10 }
+        a.id !== id ? a : { ...a, status: WindowStatus.MINI, zIndex: 20 }
       ),
     })),
 
   focusApp: (id) =>
     set((s) => ({
-      apps: s.apps.map((a) => ({ ...a, zIndex: a.id === id ? 20 : 10 })),
+      apps: s.apps.map((a) =>
+        a.id !== id
+          ? { ...a, zIndex: 10 }
+          : { ...a, status: WindowStatus.OPEN, zIndex: 20 }
+      ),
     })),
 }));

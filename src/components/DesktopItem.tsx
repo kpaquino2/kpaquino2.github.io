@@ -1,19 +1,16 @@
 import { useDesktop } from "../lib/hooks/useDesktop";
-import type { Icon } from "@phosphor-icons/react";
+import { WindowStatus, type AppEntry } from "../lib/types";
 
-interface DesktopItemProps {
-  id: string;
-  Icon: Icon;
-  label: string;
-}
-
-const DesktopItem = ({ id, Icon, label }: DesktopItemProps) => {
-  const { openApp } = useDesktop();
+const DesktopItem = ({ id, Icon, label, status }: Partial<AppEntry>) => {
+  const { openApp, focusApp } = useDesktop();
+  if (!Icon || !id) return;
   return (
     <button
       aria-label={label}
       className="flex w-18 flex-col items-center p-1 border-1 border-dashed border-transparent focus:border-black dark:focus:border-white focus:ring-0 focus:outline-none"
-      onDoubleClick={() => openApp(id)}
+      onDoubleClick={() =>
+        status === WindowStatus.OPEN ? focusApp(id) : openApp(id)
+      }
     >
       <Icon size={40} className="fill-black dark:fill-white" weight="thin" />
       <p className="text-xs text-center">{label}</p>

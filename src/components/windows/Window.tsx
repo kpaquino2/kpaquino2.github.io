@@ -2,7 +2,7 @@ import { useRef, type RefObject } from "react";
 import TitleBar from "./TitleBar";
 import { motion, useDragControls, useMotionValue } from "motion/react";
 import { useDesktop } from "../../lib/hooks/useDesktop";
-import { WindowStatus, type AppEntry } from "../../lib/types";
+import { type AppEntry } from "../../lib/types";
 
 interface WindowProps {
   constraintsRef: RefObject<HTMLDivElement | null>;
@@ -22,13 +22,22 @@ const Window = ({
   const y = useMotionValue(0);
   const prevpos = useRef<{ x: number; y: number }>({ x: x.get(), y: y.get() });
   const variants = {
-    minimized: { scale: 0, x: 16, y: -24, opacity: 0 },
+    minimized: {
+      scale: 0,
+      x: 16,
+      y: -24,
+      opacity: 0.5,
+      originX: 0,
+      originY: 0,
+    },
     open: {
       scaleY: 1,
       scale: 1,
       x: prevpos.current.x,
       y: prevpos.current.y,
       opacity: 1,
+      originX: 0.5,
+      originY: 0.5,
     },
     closed: {
       scaleY: 1,
@@ -36,6 +45,8 @@ const Window = ({
       x: prevpos.current.x,
       y: prevpos.current.y,
       opacity: 1,
+      originX: 0.5,
+      originY: 0.5,
     },
   };
 
@@ -53,16 +64,29 @@ const Window = ({
       onMouseDown={() => focusApp(id)}
       style={{
         zIndex,
-        transformOrigin: status === WindowStatus.MINI ? "top left" : "center",
         x,
         y,
       }}
       animate={variants[status]}
-      transition={{ ease: "easeInOut", duration: 0.2 }}
-      initial={{ scale: 0.7, x: 0, y: 0, opacity: 0 }}
-      exit={{ scale: 0.7, x: x.get(), y: y.get(), opacity: 0 }}
+      transition={{ ease: "easeInOut", duration: 0.3 }}
+      initial={{
+        scale: 0.5,
+        x: 0,
+        y: 0,
+        opacity: 0,
+        originX: 0.5,
+        originY: 0.5,
+      }}
+      exit={{
+        scale: 0.5,
+        x: x.get(),
+        y: y.get(),
+        opacity: 0,
+        originX: 0.5,
+        originY: 0.5,
+      }}
     >
-      <TitleBar title={label} controls={controls} id={id} />
+      <TitleBar controls={controls} id={id} zIndex={zIndex} label={label} />
       <Content />
     </motion.div>
   );
