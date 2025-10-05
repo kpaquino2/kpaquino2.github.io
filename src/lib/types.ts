@@ -5,7 +5,7 @@ export const WindowStatus = {
   OPEN: "open",
   MINI: "minimized",
   CLOSED: "closed",
-};
+} as const;
 
 export type WindowStatusType = (typeof WindowStatus)[keyof typeof WindowStatus];
 
