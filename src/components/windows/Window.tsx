@@ -30,7 +30,13 @@ const Window = ({
       y: prevpos.current.y,
       opacity: 1,
     },
-    closed: { scale: 0, x: 16, y: -24, opacity: 0 },
+    closed: {
+      scaleY: 1,
+      scale: 1,
+      x: prevpos.current.x,
+      y: prevpos.current.y,
+      opacity: 1,
+    },
   };
 
   return (
