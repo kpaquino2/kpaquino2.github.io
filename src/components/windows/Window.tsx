@@ -2,7 +2,7 @@ import { useRef, type RefObject } from "react";
 import TitleBar from "./TitleBar";
 import { motion, useDragControls, useMotionValue } from "motion/react";
 import { useDesktop } from "../../lib/hooks/useDesktop";
-import { type AppEntry } from "../../lib/types";
+import { WindowStatus, type AppEntry } from "../../lib/types";
 
 interface WindowProps {
   constraintsRef: RefObject<HTMLDivElement | null>;
@@ -45,9 +45,16 @@ const Window = ({
       }}
       className="flex flex-col absolute max-w-full max-h-full bg-white dark:bg-black border-1 w-200 h-160"
       onMouseDown={() => focusApp(id)}
-      style={{ zIndex, transformOrigin: "top left", x, y }}
+      style={{
+        zIndex,
+        transformOrigin: status === WindowStatus.MINI ? "top left" : "center",
+        x,
+        y,
+      }}
       animate={variants[status]}
-      transition={{ ease: "easeInOut", duration: 0.4 }}
+      transition={{ ease: "easeInOut", duration: 0.2 }}
+      initial={{ scale: 0.7, x: 0, y: 0, opacity: 0 }}
+      exit={{ scale: 0.7, x: x.get(), y: y.get(), opacity: 0 }}
     >
       <TitleBar title={label} controls={controls} id={id} />
       <Content />

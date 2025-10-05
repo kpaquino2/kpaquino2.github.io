@@ -1,7 +1,7 @@
 import DesktopItem from "./DesktopItem";
 import Panel from "./panel/Panel";
 import { useRef } from "react";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { WindowStatus } from "../lib/types";
 import { useDesktop } from "../lib/hooks/useDesktop";
 import Window from "./windows/Window";
@@ -21,11 +21,13 @@ const Screen = () => {
           {apps.map((item) => (
             <DesktopItem key={item.label} {...item} />
           ))}
-          {apps
-            .filter((app) => app.status !== WindowStatus.CLOSED)
-            .map((app) => (
-              <Window key={app.id} constraintsRef={constraintsRef} {...app} />
-            ))}
+          <AnimatePresence>
+            {apps
+              .filter((app) => app.status !== WindowStatus.CLOSED)
+              .map((app) => (
+                <Window key={app.id} constraintsRef={constraintsRef} {...app} />
+              ))}
+          </AnimatePresence>
         </motion.div>
         {}
       </div>
