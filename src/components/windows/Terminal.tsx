@@ -59,14 +59,18 @@ const Terminal = ({ active }: TerminalProps) => {
       onClick={() => inputRef.current?.focus()}
     >
       {history.map((line, i) => (
-        <div key={i}>{line}</div>
+        <div key={i} className={active ? "" : "opacity-50"}>
+          {line}
+        </div>
       ))}
 
       {/* Prompt + input */}
       <div
         ref={inputRef}
         tabIndex={0}
-        className="whitespace-pre outline-none"
+        className={
+          "whitespace-pre outline-none " + (active ? "" : "opacity-50")
+        }
         onKeyDown={handleKeyDown}
       >
         {`${prompt} ${input}`}
