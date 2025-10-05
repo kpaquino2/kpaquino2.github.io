@@ -8,6 +8,7 @@ const Terminal = ({ active }: TerminalProps) => {
   const [history, setHistory] = useState<string[]>([]);
   const [input, setInput] = useState("");
   const inputRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const prompt = "kyle@portfolio:~$";
 
@@ -15,6 +16,13 @@ const Terminal = ({ active }: TerminalProps) => {
     // Focus the input area when the terminal mounts
     inputRef.current?.focus();
   }, []);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (el) {
+      el.scrollTop = el.scrollHeight;
+    }
+  }, [history]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === "Enter") {
@@ -57,6 +65,7 @@ const Terminal = ({ active }: TerminalProps) => {
     <div
       className="h-full overflow-y-auto bg-black px-2 py-1 text-sm"
       onClick={() => inputRef.current?.focus()}
+      ref={containerRef}
     >
       {history.map((line, i) => (
         <div key={i} className={active ? "" : "opacity-50"}>
