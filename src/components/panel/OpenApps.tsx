@@ -17,7 +17,7 @@ const OpenApps = () => {
                 : minimizeApp(app.id)
             }
             className={
-              "border-r items-center group relative justify-center flex gap-2 px-2 " +
+              "border-r items-center group relative lg:w-68 w-8 justify-between flex gap-2 px-2 " +
               (app.status === WindowStatus.MINI || app.zIndex === 10
                 ? "opacity-50"
                 : "")
@@ -25,7 +25,7 @@ const OpenApps = () => {
             key={app.id}
           >
             <app.Icon />
-            <p className="hidden lg:flex">{app.label}</p>
+            <p className="hidden flex-1 lg:flex">{app.label}</p>
             <div
               className="bg-white dark:bg-black group-hover:opacity-100 hidden lg:grid opacity-0 place-items-center cursor-pointer"
               onClick={(e) => {

@@ -13,6 +13,7 @@ const Window = ({
   label,
   status,
   zIndex,
+  order,
   Content,
   constraintsRef,
 }: WindowProps & AppEntry) => {
@@ -21,10 +22,12 @@ const Window = ({
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const prevpos = useRef<{ x: number; y: number }>({ x: x.get(), y: y.get() });
+  const isSmall = window.matchMedia("(max-width: 1024px)").matches;
+  const iconWidth = isSmall ? 32 : 272;
   const variants = {
     minimized: {
       scale: 0,
-      x: 16,
+      x: order * iconWidth - iconWidth / 2,
       y: -24,
       opacity: 0.5,
       originX: 0,
