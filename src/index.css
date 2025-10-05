@@ -6,6 +6,10 @@ html {
   font-family: "IBM Plex Mono", monospace;
 }
 
+@theme {
+  --animate-blink: blink 1s infinite;
+}
+
 @layer base {
   html {
     @apply bg-white text-black transition-colors;
@@ -17,5 +21,16 @@ html {
 
   body {
     @apply min-h-screen;
+  }
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 0; /* Cursor invisible at start and end */
+  }
+  51%,
+  100% {
+    opacity: 1; /* Cursor visible at midpoint */
   }
 }

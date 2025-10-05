@@ -90,7 +90,7 @@ const Window = ({
       }}
     >
       <TitleBar controls={controls} id={id} zIndex={zIndex} label={label} />
-      <Content />
+      <Content active={zIndex === 20} />
     </motion.div>
   );
 };

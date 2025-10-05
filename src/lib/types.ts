@@ -16,5 +16,5 @@ export type AppEntry = {
   label: string;
   order: number;
   Icon: Icon;
-  Content: () => ReactNode;
+  Content: ({ active }: { active: boolean }) => ReactNode;
 };
