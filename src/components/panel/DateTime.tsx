@@ -12,8 +12,13 @@ const DateTime = () => {
   }, []);
 
   return (
-    <p>
-      {currentTime.toLocaleDateString()} {currentTime.toLocaleTimeString()}
+    <p className="h-full flex items-center">
+      {currentTime.toLocaleDateString()}{" "}
+      {currentTime.toLocaleTimeString(undefined, {
+        hourCycle: "h24",
+        hour: "2-digit",
+        minute: "2-digit",
+      })}
     </p>
   );
 };
