@@ -43,6 +43,20 @@ const Terminal = ({ active }: TerminalProps) => {
   };
 
   const handleCommand = (cmd: string) => {
+    const aboutText = [
+      "Hi, I'm Kyle Aquino.",
+      "\u00A0",
+      "I'm a developer who enjoys creating practical and well-structured solutions. While my current work focuses on frontend development, I'm comfortable working across the stack, from building APIs to handling deployments. My freelance experience taught me how to manage projects end to end.",
+      "\u00A0",
+      "I care about simplicity, clarity, and maintainable code. I also enjoy systems thinking, solving problems, and continuously learning new tools and approaches that make my work more effective.",
+      "\u00A0",
+      "Tech I often use: React, Next.js, TypeScript, Node.js, PostgreSQL, and Tailwind.",
+      "\u00A0",
+      "When I'm not coding, I'm usually reading, exploring new frameworks or thinking about better ways to design and organize systems.",
+      "\u00A0",
+      "Run 'projects' to see what I've worked on, or 'help' to view all commands.",
+    ];
+    console.log(aboutText);
     switch (cmd.trim()) {
       case "clear":
         setHistory([]);
@@ -54,7 +68,7 @@ const Terminal = ({ active }: TerminalProps) => {
         ]);
         break;
       case "about":
-        setHistory((prev) => [...prev, "Hi, I'm Kyle — a frontend developer."]);
+        setHistory((prev) => [...prev, ...aboutText]);
         break;
       default:
         setHistory((prev) => [...prev, `Unknown command: ${cmd}`]);
@@ -63,12 +77,15 @@ const Terminal = ({ active }: TerminalProps) => {
 
   return (
     <div
-      className="h-full overflow-y-auto bg-black px-2 py-1 text-sm"
+      className="h-full overflow-y-auto bg-white px-2 py-1 text-sm dark:bg-black"
       onClick={() => inputRef.current?.focus()}
       ref={containerRef}
     >
       {history.map((line, i) => (
-        <div key={i} className={active ? "" : "opacity-50"}>
+        <div
+          key={i}
+          className={"leading-[1.2] " + (active ? "" : "opacity-50")}
+        >
           {line}
         </div>
       ))}
